@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1538770555 source:e:\project\c\graphics project\navigator\navigator.c
+	<stdio.h>
+	<conio.h>
+	<graphics.h>
+
+1266061814 c:\program files\codeblocks-ep\sdk\winbgim\include\graphics.h
+	<windows.h>
+	<limits.h>
+	<sstream>
+
