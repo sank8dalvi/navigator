@@ -1,6 +1,9 @@
 #include<stdio.h>
 #include<conio.h>
 #include<graphics.h>
+#include <windows.h>
+COORD coord = {0, 0};
+void gotoxy (int, int);
 int main()
 {
 int gd=DETECT,gm;
@@ -45,5 +48,10 @@ lineto(200,180);
 lineto(173,240);
 getch();
 closegraph();
+}
+void gotoxy (int x, int y)
+{
+        coord.X = x; coord.Y = y; // X and Y coordinates
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
