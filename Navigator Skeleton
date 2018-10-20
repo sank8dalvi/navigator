@@ -1,0 +1,113 @@
+#include<stdio.h>
+#include<conio.h>
+#define INFINITY 9999
+#define MAX 8               //assumed 8 cities
+
+int cord[MAX][2]={           //city coords
+                    {,},
+                    {,},
+                    {,},
+                    {,},
+                    {,},
+                    {,},
+                    {,},
+                    {,}
+                };
+
+int G[MAX][MAX]={           //city weights csv{,,,,,,,}
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                };
+
+void navigator(int G[MAX][MAX],int n,int startnode,int dest);
+void drawPath(int dest,int startnode,int pred[MAX]);
+
+int main()
+{
+    int n,u,dest;
+
+    printf("\nEnter the starting node:");
+    scanf("%d",&u);
+
+    printf("Enter Destination node:");
+    scanf("%d",&dest);
+    dijkstra(G,n,u,dest);
+
+    return 0;
+}
+
+
+void navigator(int G[MAX][MAX],int n,int startnode,int dest)
+{
+
+    int cost[MAX][MAX],distance[MAX],pred[MAX];
+    int visited[MAX],count,mindistance,nextnode,i,j;
+
+    for(i=0;i<n;i++)
+        for(j=0;j<n;j++)
+            if(G[i][j]==0)
+                cost[i][j]=INFINITY;
+            else
+                cost[i][j]=G[i][j];
+
+    for(i=0;i<n;i++)
+    {
+        distance[i]=cost[startnode][i];
+        pred[i]=startnode;
+        visited[i]=0;
+    }
+
+    distance[startnode]=0;
+    visited[startnode]=1;
+    count=1;
+
+    while(count<n-1)
+    {
+        mindistance=INFINITY;
+
+        for(i=0;i<n;i++)
+            if(distance[i]<mindistance&&!visited[i])
+            {
+                mindistance=distance[i];
+                nextnode=i;
+            }
+
+            visited[nextnode]=1;
+            for(i=0;i<dest+1;i++)
+                if(!visited[i])
+                    if(mindistance+cost[nextnode][i]<distance[i])
+                    {
+                        distance[i]=mindistance+cost[nextnode][i];
+                        pred[i]=nextnode;
+                    }
+        count++;
+    }
+    drawPath(dest,startnode,pred);
+}
+
+void drawPath(int dest,int startnode,int pred[MAX]){
+    int j=dest;
+    moveto(cord[startnode][0],cord[startnode][1]);
+    do{
+        j=pred[j];
+        lineto(cord[j][0],cord[j][1]);
+    }while(j!=startnode);
+}
+
+/*
+  printf("\nDistance of node%d=%d",dest,distance[dest]);           / original logic
+            printf("\nPath=%d",dest);
+
+            j=dest;
+            do
+            {
+                j=pred[j];
+                printf("<-%d",j);
+            }while(j!=startnode);
+*/
