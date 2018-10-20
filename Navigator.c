@@ -4,6 +4,7 @@
 #include <windows.h>
 COORD coord = {0, 0};
 void gotoxy (int, int);
+int menu();
 int main()
 {
 int gd=DETECT,gm;
@@ -54,4 +55,29 @@ void gotoxy (int x, int y)
         coord.X = x; coord.Y = y; // X and Y coordinates
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-
+int menu()
+{
+int ch;
+	gotoxy(30,5);
+	printf("Project Title");
+    gotoxy(30,6);
+    printf(" =================== ");
+    gotoxy(3,24);
+	gotoxy(30,10);
+	printf(" 1.Option 1");
+	gotoxy(30,11);
+	printf(" 2.Option 2");
+	gotoxy(30,12);
+	printf(" 3.Option 3");
+	gotoxy(30,13);
+	printf(" 4.Option 4");
+	gotoxy(30,14);
+	printf(" 5.Option 5");
+	gotoxy(30,15);
+	printf(" 6. EXIT ");
+	gotoxy(30,20);
+	printf(" Enter your choice:");
+	gotoxy(55,20);
+	scanf("%d", ch);
+	return ch;
+}
