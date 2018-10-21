@@ -3,6 +3,39 @@
 #include<graphics.h>
 #include <windows.h>
 COORD coord = {0, 0};
+int city[MAX][2]={
+    {
+        16,253
+    },
+    {
+        195,242
+    },
+    {
+        212,215
+    },
+    {
+        207,162
+    },
+    {
+        250,59
+    },
+    {
+        262,121
+    },
+    {
+        269,146
+    },
+    {
+        284,175
+    },
+    {
+        328,184
+    },
+    {
+        357,210
+    },
+}
+
 void gotoxy (int, int);
 int menu();
 int main()
