@@ -2,6 +2,7 @@
 #include<conio.h>
 #include<graphics.h>
 #include <windows.h>
+#define MAX 10
 COORD coord = {0, 0};
 char cityname[MAX][20]={"Rajkot","Ahemdabad","Udaipur","Bikaner","Srinagar","Chandigarh","New Delhi","Agra","Lucknow","Varanasi"};
 int city[MAX][2]={
@@ -15,7 +16,7 @@ int city[MAX][2]={
 			{284,175},
 			{328,184},
 			{357,210}
-}
+};
 
 int G[MAX][MAX]={          					//city weights 
                     {0,16,0,36,0,0,0,0,0,0},			//Rajkot
@@ -31,6 +32,7 @@ int G[MAX][MAX]={          					//city weights
             };
 
 void gotoxy (int, int);
+void drawCities();
 int menu();
 int main()
 {
@@ -64,19 +66,15 @@ int main()
 	setfillstyle(9,9);
 	fillpoly(48,guj);
 	setfillstyle(1,0);
-	fillellipse(170,240,2,2);
-	moveto(173,240);
-	outtext("Ahemdabad");
-	fillellipse(200,180,2,2);
-	moveto(200,180);
-	outtext("Jaipur");
+	moveto(200,375);
+	outtext("NNorth India Navigator");
 	setlinestyle(5, 0, 2);
 	moveto(276,121);
 	lineto(200,180);
 	lineto(173,240);
 	drawCities();
-getch();
-closegraph();
+	getch();
+	closegraph();
 }
 void gotoxy (int x, int y)
 {
