@@ -35,7 +35,7 @@ int dept,dest;
 void gotoxy (int, int);
 void drawCities();
 void menu();
-void navigate(int G[MAX][MAX],int startnode,int dest);
+void bfs(int G[MAX][MAX],int startnode,int dest);
 int main()
 {
 	int gd=DETECT,gm;
@@ -72,7 +72,7 @@ int main()
 	outtextxy(400,100,"Map of North India");
 	setlinestyle(2, 0, 3);
 	drawCities();
-	navigate(G,--dept,--dest);
+	bfs(G,--dept,--dest);
 	getch();
 	closegraph();
 }
@@ -123,7 +123,7 @@ void drawCities(){
     outtext(cityname[i]);
     }
 }
-void navigate(int G[MAX][MAX],int startnode,int dest)
+void bfs(int G[MAX][MAX],int startnode,int dest)
 {
     int n=MAX;
     int cost[MAX][MAX],distance[MAX],pred[MAX];
@@ -165,7 +165,7 @@ void navigate(int G[MAX][MAX],int startnode,int dest)
 
             //check if a better path exists through nextnode
             visited[nextnode]=1;
-            for(i=0;i<dest+1;i++)
+            for(i=0;i<n;i++)
                 if(!visited[i])
                     if(mindistance+cost[nextnode][i]<distance[i])
                     {
